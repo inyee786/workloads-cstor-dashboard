@@ -1,0 +1,210 @@
+<!-- <app-iframemodal></app-iframemodal> -->
+<div class="bg-strip workload-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="d-flex align-items-center">
+          <li><img src="assets/images/workloads-logos/{{workloadName}}.svg" alt="">{{workloadImage}}</li>
+          <li><img src="assets/images/company-logos/mule-without-tagline.png" alt="">OpenEBS : 0.7.0-RC2</li>
+          <li><img src="assets/images/company-logos/k8s.png" alt="">Namespace : {{namespace}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="text-center">
+        <p> Application </p>
+      </div>
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-around workloads my-5">
+          <div class="workload-deatils" *ngFor="let pvc of pvcarray">
+            <div *ngFor="let statefulset of statefullSets">
+              <p *ngIf="statefulset.pvc === pvc.name ">
+                <img src="assets/images/workloads-logos/{{workloadName}}.svg" height="30" alt=""><span placement="bottom" ngbTooltip="{{statefulset.name}}">
+                  {{workloadName}}</span> on <span placement="bottom" ngbTooltip="{{statefulset.nodeName}}">{{statefulset.node}}</span>
+                <i style="margin-left:5px" class="float-right fas" [ngClass]="{
+              'fa-check text-success':statefulset.status === 'Running',   
+              'fa-times text-danger':statefulset.status === 'Pending' || statefulset.status === 'Failed',
+              'fa-exclamation-triangle text-warning':statefulset.status === 'Unknown'
+            }"></i>
+              </p>
+            </div>
+            <div *ngFor="let jivaContrller of jivaContrllers;let i = index">
+              <p *ngIf="jivaContrller.pvc === pvc.name">
+                <img src="assets/images/company-logos/mule-without-tagline.png" height="30" alt="" style="margin-right:10px"><span placement="bottom"
+                  ngbTooltip="{{jivaContrller.name}}">c-stor</span> on <span placement="bottom" ngbTooltip="{{jivaContrller.nodeName}}">{{jivaContrller.node}}</span><i
+                  style="margin-left:5px" class="float-right fas" [ngClass]="{
+            'fa-check text-success':jivaContrller.status === 'Running',   
+            'fa-times text-danger':jivaContrller.status === 'Pending' || jivaContrller.status === 'Failed',
+            'fa-exclamation-triangle text-warning':jivaContrller.status === 'Unknown'
+          }"></i>
+              </p>
+            </div>
+            <div *ngFor="let jivaReplica of jivaReplicas; let j = index">
+              <p *ngIf="jivaReplica.pvc === pvc.name">
+                <img src="assets/images/company-logos/mule-without-tagline.png" height="30" alt="" style="margin-right:10px"><span placement="bottom"
+                  ngbTooltip="{{jivaReplica.name}}">Replica</span>-{{j}} on <span placement="bottom" ngbTooltip="{{jivaReplica.nodeName}}">{{jivaReplica.node}}</span><i
+                  style="margin-left:5px" class="float-right fas" [ngClass]="{
+              'fa-check text-success':jivaReplica.status === 'Running',
+              'fa-times text-danger':jivaReplica.status === 'Pending' || jivaReplica.status === 'Failed' || jivaReplica.status === 'Terminating',
+              'fa-exclamation-triangle text-warning':jivaReplica.status === 'Unknown'
+            }"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="text-center">
+        <p> Actions </p>
+      </div>
+      <div class="my-5">
+        <table class="table action-table">
+          <tbody>
+            <tr>
+              <td style="padding-left: 70px;">
+                <span placement="bottom" ngbTooltip="Generate random write operation on {{workloadName}} application">Write Operations</span>
+              </td>
+              <td style="padding-left: 240px;">
+                <button class="btn btn-pill btn-secondary action-button btn-sm" (click)="save()">
+                  Go </button>
+              </td>
+              <td style="text-align: center;">
+                <div class="btn btn-pill status-button" *ngIf="writeStatus" placement="bottom" ngbTooltip="{{postmessage}}" [ngClass]="{
+                          'btn-success':poststatus===200,
+                          'btn-danger':poststatus===500
+                        }">{{poststatus}}
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-left: 70px;">
+                <span placement="bottom" ngbTooltip="Perform read operation on {{workloadName}} application">Read Operations</span>
+              </td>
+              <td style="padding-left: 240px;">
+                <button class="btn btn-pill btn-secondary action-button btn-sm" (click)="read()">
+                  Go
+                </button>
+              </td>
+              <td style="text-align: center;">
+                <div class="btn btn-pill status-button" *ngIf="readStatus" placement="bottom" ngbTooltip="{{getmessage}}" [ngClass]="{
+                            'btn-success':getstatus===200,
+                            'btn-danger':getstatus===500
+                          }">{{getstatus}}
+                </div>
+              </td>
+            </tr>
+            <!-- <tr>
+              <td style="padding-left: 70px;"> Induce Chaos </td>
+              <td style="padding-left: 55px;">
+                <div class="row">
+                  <div>
+                    <select class="custom-select" id="induceChaos" (change)="onChaosSelect($event.target.value)" style="width:180px;">
+                      <option selected value="">Select Chaos..</option>
+                      <option *ngFor="let chaosTest of chaosTests;" value="{{chaosTest}} "> {{chaosTest}}
+                      </option>
+                    </select>
+                  </div>
+                  <div style="padding-left: 20px; ">
+                    <button class="btn btn-pill btn-secondary action-button btn-sm " (click)="runChaosTest(selectedChaos, selectedApplication) ">
+                      Go </button>
+                  </div>
+                </div>
+              </td>
+            </tr> -->
+            <tr>
+              <td></td>
+              <td style="padding-left: 40px;">
+                <div>
+                  <select class="custom-select hide-custom" id="application" (change)="onAppSelect($event.target.value)" style="width:180px;">
+                    <option selected value="">Select Application..</option>
+                    <option *ngFor="let statefulset of statefullSets" value="{{statefulset.name}} "> {{statefulset.name}}
+                    </option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-strip configuration-header ">
+    <div class="container ">
+      <div claas="row ">
+        <div class="col-md-12 ">
+          <ul class="d-flex align-items-center ">
+            <li>Configurations File</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="Configurations ">
+    <div class="container ">
+      <div class="row ">
+        <div class="col-md-12 ">
+          <table class="table ">
+            <tbody>
+              <tr class="d-flex justify-content-between ">
+                <td>Namespace</td>
+                <td><a href="{{namespaceyaml}}"
+                    target="blank "> <button class="btn btn-secondary "><i class="fas fa-cog "></i> View</button></a></td>
+                <td></td>
+                <td>  <a href="{{workloadyaml}}"
+                    target="blank "> <button class="btn btn-secondary "><i class="fas fa-cog "></i> View</button></a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-strip configuration-header ">
+      <div class="container ">
+        <div claas="row ">
+          <div class="col-md-12 ">
+            <div class="d-flex justify-content-between ">
+              <div>Query command mayactl volumes list -n {{namespace}}</div> <button class="btn btn-secondary float-right "
+                (click)="listVolume() ">Execute <img src="assets/images/down-left.png " alt=" " height="20px "></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container my-2 ">
+      <div class="row py-1 ">
+        <div class="col-md-12 d-flex justify-content-between py-1 ">
+          <table class="table " *ngFor="let volume of jivas ">
+            <tr>
+              <td>Volume Name:</td>
+              <td>{{volume.metadata.name}}</td>
+            </tr>
+            <tr>
+              <td>Controller Status:</td>
+              <td>{{volume.metadata.annotations['vsm.openebs.io/controller-status']}}</td>
+            </tr>
+            <tr>
+              <td>Replica Count:</td>
+              <td>{{volume.metadata.annotations['vsm.openebs.io/replica-count']}}</td>
+            </tr>
+            <tr>
+              <td>Replica status:</td>
+              <td>{{volume.metadata.annotations['vsm.openebs.io/replica-status']}}</td>
+            </tr>
+            <tr>
+              <td>Capacity:</td>
+              <td>{{volume.metadata.annotations['vsm.openebs.io/volume-size']}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>

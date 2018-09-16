@@ -1,0 +1,61 @@
+.workload-header {
+  ul {
+    li {
+      display: flex;
+      align-items: center;
+      width: 25%;
+      color: #848484;
+      img {
+        height: 30px;
+        width: auto;
+        margin-right: 0.3rem;
+      }
+    }
+  }
+}
+.Configurations {
+  ul {
+    li {
+      button {
+        margin-bottom: 0.2rem;
+        margin-top: 0.2rem;
+      }
+    }
+  }
+}
+.table {
+  td {
+    border-top: 0px;
+  }
+}
+.workloads {
+  .workload-deatils {
+    padding: 2rem;
+    border: 1px solid #fff;
+    box-shadow: 0 0 20px #d0d3e2;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.action-button {
+  border-radius: 16px;
+  padding: 5px 25px;
+}
+.status-button {
+  border-radius: 16px;
+  padding: 3px 13px;
+}
+.action-dropdown-button {
+  border-radius: 16px;
+  padding: 5px 18px;
+}
+.action-table {
+  td {
+    border-top: 0px;
+    // text-align: center;
+    padding-bottom: 0px;
+  }
+}
+.dropdown-menu {
+  background-color: #e6e0e0;
+}

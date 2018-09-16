@@ -1,0 +1,43 @@
+<div class="bg-strip configuration-header">
+  <div class="container">
+    <div claas="row">
+      <div class="col-md-12">
+        <div class="d-flex justify-content-between">
+          <div> DataBase Operation write 100 data </div> <button class="btn btn-secondary float-right" (click)="save()">Execute
+            <img src="assets/images/down-left.png" alt="" height="20px"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-2">
+  <div class="row">
+    <div class="col-md-12 d-flex align-items-center py-1" > <div style="margin-right:0.5rem" class="btn" [ngClass]="{
+      'btn-success':poststatus===200,
+      'btn-danger' :poststatus===500
+    }">{{poststatus}}</div> {{postmessage}} </div>
+  </div>
+</div>
+
+<div class="bg-strip configuration-header">
+  <div class="container">
+    <div claas="row">
+      <div class="col-md-12">
+        <div class="d-flex justify-content-between">
+          <div>DataBase Operation read 100 data </div><button  class="btn btn-secondary float-right" (click)="read()">Execute
+            <img src="assets/images/down-left.png" alt="" height="20px"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-2">
+  <div class="row">
+    <div class="col-md-12 d-flex align-items-center py-1"> <div style="margin-right:0.5rem" class="btn" [ngClass]="{
+      'btn-success':getstatus===200,
+      'btn-danger':getstatus===500
+    }" >{{getstatus}}</div> {{getmessage}} </div>
+  </div>
+</div>

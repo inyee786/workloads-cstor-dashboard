@@ -1,0 +1,19 @@
+language: node_js
+node_js: stable
+env:
+  global:
+    - COMMIT=${TRAVIS_COMMIT::6}
+before_install:
+  - npm install -g @angular/cli
+sudo: required
+services:
+- docker
+script:
+- ng build --prod
+after_success:
+- if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" != "false" ]; then export REPO=inyee/workloads-cstor-dashboard;
+   docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" && docker build -t $REPO:$COMMIT . && docker push $REPO; 
+  fi
+- if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then export REPO=inyee/workloads-cstor-dashboard;
+   docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" && docker build -t $REPO:$COMMIT . && docker push $REPO; 
+  fi

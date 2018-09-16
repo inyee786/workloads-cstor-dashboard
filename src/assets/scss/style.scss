@@ -1,0 +1,387 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Muli');
+@import "~animate.css/animate.css";
+body {
+  font-family: 'Muli', sans-serif;
+  color: #8F8F8F;
+  }
+  
+  /* Global css  */
+  
+  .desktop {
+    display: block;
+  }
+  
+  .desktop-flex {
+    display: flex;
+  }
+  
+  .mobile-flex {
+    display: none;
+  }
+  
+  a,
+  button {
+    cursor: pointer;
+  }
+  
+  .mobile {
+    display: none;
+  }
+  
+  .rm-pd {
+    padding: 0;
+  }
+  
+  .openebs-support .des-flex {
+    display: flex;
+  }
+  
+  .margin-0-auto {
+    margin: 0 auto;
+  }
+  
+  .middle-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @media screen and (max-width:767px) {
+    .desktop {
+      display: none;
+    }
+    .mobile {
+      display: block;
+    }
+    .mobile-flex {
+      display: flex;
+    }
+    .openebs-support .des-flex {
+      display: block;
+    }
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+
+  a:hover {
+    text-decoration: none;
+  }
+  
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 0;
+  }
+  
+  .ebs-btn {
+    color: #fff;
+    padding: 0.4rem 1rem;
+    border: none;
+    font-size: 1.2rem;
+    margin-right: 2rem;
+    background-color: #ee5a2b;
+    cursor: pointer;
+  }
+  
+  .ebs-btn:disabled {
+    background-color: #696969;
+  }
+  
+  /*font size start*/
+  
+  .p4 {
+    font-size: 12px;
+  }
+  
+  .p3 {
+    font-size: 14px;
+  }
+  
+  .p2 {
+    font-size: 16px;
+  }
+  
+  .p1 {
+    font-size: 19px;
+  }
+  
+  .footer ul {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 45px;
+  }
+  
+  h3 {
+    font-size: 29px;
+  }
+  
+  h4 {
+    font-size: 26px;
+  }
+  
+  /*font size end */
+  
+  /*border start*/
+  
+  .bd-tb {
+    border-right: 1px solid #606060;
+  }
+  
+  .bd-b {
+    border: 0px solid black;
+  }
+  
+  .bd-d {
+    border: 0px dotted black;
+  }
+  
+  /*boder end */
+  
+  /* sizing css start*/
+  
+  .w-45 {
+    max-width: 45% !important;
+  }
+  
+  .w-90 {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  
+  /* sizing css end*/
+  
+  /*padding define start*/
+  
+  .pd-t-b-all {
+    padding: 5rem 0;
+  }
+  
+  .pd-t-b-all-03 {
+    padding: 3rem 0;
+  }
+  
+  .pd-t-b-1 {
+    padding: 1rem 0;
+  }
+  
+  .pd-t-b-105 {
+    padding: 1.5rem 0;
+  }
+  
+  .pd-t-b-2 {
+    padding: 2rem 0;
+  }
+  
+  .pd-t-b-heading1 {
+    padding: 2rem 0rem;
+  }
+  
+  .pd-t-b-heading2 {
+    padding: 1rem 0rem;
+  }
+  
+  .pd-t-b-07 {
+    padding: 0.7rem 0
+  }
+  
+  .pd-t-b-02 {
+    padding: 0.2rem 0
+  }
+  
+  .pd-t-05 {
+    padding-top: 0.5rem;
+  }
+  
+  .pb-b-2 {
+    padding-bottom: 2rem;
+  }
+  
+  .pb-t-2 {
+    padding-top: 2rem;
+  }
+  
+  .pd-b-3 {
+    padding-bottom: 3rem;
+  }
+  
+  .pd-t-3 {
+    padding-top: 3rem;
+  }
+  
+  .m-t-b-2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media screen and (max-width:767px) {
+    h1 {
+      font-size: 40px;
+    }
+    .pb-b-2-mb {
+      padding: 0 15px 2rem 15px;
+    }
+    .bd-tb {
+      border-right: none;
+    }
+    .pd-t-b-all {
+      padding: 3rem 0;
+    }
+    .cl-reverse-mb {
+      flex-direction: column-reverse;
+    }
+  }
+  
+  /*padding define end */
+  
+  /* Margin define end*/
+  
+  .mr-r-0 {
+    margin-right: 0;
+  }
+  
+  .mr-r-2 {
+    margin-right: 2rem;
+  }
+  
+  /*Margin define end*/
+  
+  /* mouse cursor*/
+  .pointer-cursor{
+    cursor: pointer;
+  }
+
+
+  /*circle and text under box*/
+  
+  .circle-under-text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .circle-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 3px solid #f93;
+    height: 50px;
+    width: 50px;
+  }
+  
+  /* end of global css */
+  
+
+  /*OpenEBS header end */
+    
+  /* OpneEBS footer  start*/
+  
+  .footer,
+  .footer-copyright {
+    background-color: #414141;
+  }
+  
+  .footer {
+    padding: 3rem 0rem 2rem;
+  }
+  
+  .footer-copyright {
+    padding: 1rem 0;
+  }
+  
+  .f-horizontalline {
+    width: 100%;
+    border-bottom: 1px solid white;
+    margin: 0 30px;
+  }
+  
+  .footer ul {
+    line-height: calc(3);
+    padding: 0 0 0 1rem;
+  }
+  
+  .footer .community {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .footer .community li {
+    width: 50%;
+    padding-left: 14%;
+  }
+  
+  .f-logo-section {
+    text-align: left;
+    padding: 2rem 15px;
+  }
+  
+  .f-logo {
+    padding: 0.5rem 0;
+    height: 2.5rem;
+    width: auto;
+    /* text-align: center; */
+  }
+  
+  .f-copyright {
+    text-align: center;
+    color: white;
+  }
+  
+  @media screen and (min-width:768px) {
+    .f-horizontalline {
+      display: none;
+    }
+    .footer .community li {
+      width: 100%;
+    }
+    .footer ul {
+      padding: 0 0 0 4rem;
+    }
+    .f-logo-section {
+      text-align: left;
+    }
+    .f-logo-section {
+      text-align: left;
+      padding: 2rem 15px;
+    }
+  }
+  
+  /* openebs footer close */
+  
+  /*Banners */
+  .banner{
+    max-height: 58px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+  }
+  .banner a{
+    text-decoration: underline;
+  }
+  .banner .content{
+   font-size: 16px;
+   padding: 15px 0;
+  }
+  .bg-strip {
+    background-color: #f7f7f7;
+    color: #848484;
+    ul{
+     margin-bottom:0px;
+      min-height:40px;
+    }
+  }
+
+
