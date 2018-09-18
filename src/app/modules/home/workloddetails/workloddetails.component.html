@@ -186,23 +186,19 @@
           <table class="table " *ngFor="let volume of jivas ">
             <tr>
               <td>Volume Name:</td>
-              <td>{{volume.metadata.name}}</td>
+              <td>{{volume.name}}</td>
             </tr>
             <tr>
-              <td>Controller Status:</td>
-              <td>{{volume.metadata.annotations['vsm.openebs.io/controller-status']}}</td>
+              <td>Status:</td>
+              <td>{{volume.status}}</td>
             </tr>
             <tr>
               <td>Replica Count:</td>
-              <td>{{volume.metadata.annotations['vsm.openebs.io/replica-count']}}</td>
-            </tr>
-            <tr>
-              <td>Replica status:</td>
-              <td>{{volume.metadata.annotations['vsm.openebs.io/replica-status']}}</td>
+              <td>{{volume.replicas}}</td>
             </tr>
             <tr>
               <td>Capacity:</td>
-              <td>{{volume.metadata.annotations['vsm.openebs.io/volume-size']}}</td>
+              <td>{{volume.size}}</td>
             </tr>
           </table>
         </div>
