@@ -127,7 +127,7 @@ export class WorkloddetailsComponent implements OnInit {
       $(".hide-custom").hide();
     }
 
-    timer(0, 105000).subscribe(x => {
+    timer(0, 1000).subscribe(x => {
       this.kubernetsServices.getPodDetails().subscribe(res => {
         this.statefullSets = res.statefulSet;
         this.applicationPods = res.applicationPod;
@@ -144,8 +144,8 @@ export class WorkloddetailsComponent implements OnInit {
         //   }
         // });
         this.workloadImage = this.statefullSets[0].dockerImage;
-        // this.dockerImage = this.jivaContrllers[0].openebsjivaversion;
-        // this.openebsversion ="OpenEBS:" + this.jivaContrllers[0].openebsjivaversion.split(":")[1];
+        this.dockerImage = this.jivaContrllers[0].openebsjivaversion;
+        this.openebsversion ="OpenEBS : " + this.jivaContrllers[0].openebsjivaversion.split(":")[1];
         this.namespace = this.statefullSets[0].namespace;
         this.overallStatus = res.status;
 
