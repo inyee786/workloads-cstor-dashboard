@@ -27,6 +27,7 @@ export class WorkloddetailsComponent implements OnInit {
   jivas;
   private windowWidth;
   private rnumber = Math.floor(Math.random() * 10000000);
+  public numberstatefullSets = 0;
   public statefullSets: statefulSet[] = [];
   public jivaContrllers: jivaController[] = [];
   public jivaReplicas: jivaReplica[] = [];
@@ -127,7 +128,7 @@ export class WorkloddetailsComponent implements OnInit {
       $(".hide-custom").hide();
     }
 
-    timer(0, 1000).subscribe(x => {
+    timer(0, 5000).subscribe(x => {
       this.kubernetsServices.getPodDetails().subscribe(res => {
         this.statefullSets = res.statefulSet;
         this.applicationPods = res.applicationPod;
@@ -148,7 +149,7 @@ export class WorkloddetailsComponent implements OnInit {
         this.openebsversion ="OpenEBS : " + this.jivaContrllers[0].openebsjivaversion.split(":")[1];
         this.namespace = this.statefullSets[0].namespace;
         this.overallStatus = res.status;
-
+        this.numberstatefullSets = this.statefullSets.length;
         if (this.overallStatus == "Running") {
           this.runningStatus = true;
         } else if (
