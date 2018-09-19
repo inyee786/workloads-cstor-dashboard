@@ -11,9 +11,12 @@ services:
 script:
 - ng build --prod
 after_success:
-- if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" != "false" ]; then export REPO=inyee/workloads-cstor-dashboard;
-   docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" && docker build -t $REPO:$COMMIT . && docker push $REPO; 
-  fi
 - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then export REPO=inyee/workloads-cstor-dashboard;
    docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" && docker build -t $REPO:$COMMIT . && docker push $REPO; 
   fi
+- if [ "$TRAVIS_BRANCH" = "mongo-cstor" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then export REPO=inyee/mongo-cstor-dashboard;
+   docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" && docker build -t $REPO:$COMMIT . && docker push $REPO; 
+  fi
+- if [ "$TRAVIS_BRANCH" = "percona-cstor" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then export REPO=inyee/percona-cstor-dashboard;
+   docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" && docker build -t $REPO:$COMMIT . && docker push $REPO; 
+  fi  
