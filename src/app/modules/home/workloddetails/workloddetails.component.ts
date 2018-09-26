@@ -29,6 +29,7 @@ export class WorkloddetailsComponent implements OnInit {
   private rnumber = Math.floor(Math.random() * 10000000);
   public numberstatefullSets = 0;
   public statefullSets: statefulSet[] = [];
+  public litmuspod: statefulSet[] = [];
   public jivaContrllers: jivaController[] = [];
   public jivaReplicas: jivaReplica[] = [];
   public applicationPods: applicationPod[] = [];
@@ -51,8 +52,7 @@ export class WorkloddetailsComponent implements OnInit {
   public failledStatus = false;
   public unknownStatus = false;
   public chaosTests = [
-    "Kill OpenEBS Replica",
-    "Kill Application Pod",
+    "Kill OpenEBS Target",
     "Increase Latency Between App and Replicas"
   ];
   public selectedChaos = "";
@@ -94,6 +94,8 @@ export class WorkloddetailsComponent implements OnInit {
   public getmessage;
   public poststatus;
   public postmessage;
+  public alertMessage = "";
+  public isAlert: boolean;
   constructor(private personService: PersonService, private kubernetsServices: KubernetsService, private litmusServies: LitmusService) {
     this.windowWidth = window.innerWidth;
   }
@@ -167,6 +169,9 @@ export class WorkloddetailsComponent implements OnInit {
         };
       });
     });
+    this.kubernetsServices.getPodDetails().subscribe(res => {
+      this.litmuspod = res.statefulSet;
+    });
   }
 
   public listVolume() {
@@ -223,21 +228,51 @@ export class WorkloddetailsComponent implements OnInit {
     this.selectedApplication = appValue;
   }
 
-  public runChaosTest(chaos: string, app: string) {
-    // console.log(chaos);
-    // console.log(app);
-    if (chaos != "" && app != "") {
+  public runChaosTest(type: string, app: string) {
+    if (type != "" && app != "") {
+      this.alertMessage = type + " Chaos on " + app + " started";
       for (let i = 0; i < this.chaosTests.length; i++) {
-        // console.log(chaos);
-        // console.log(this.chaosTests[i]);
-        if (chaos.trim() == this.chaosTests[i]) {
-          chaos = i.toString();
-          // console.log(this.chaosURLAttribute);
+        if (type.trim() == this.chaosTests[i]) {
+          type = i.toString();
           break;
         }
       }
-      // console.log("inside");
-      this.litmusServies.runChaosTestService(chaos, app.trim());
+      this.litmusServies.runChaosTestService(type, app.trim());
+      this.runAlert();
+      this.setSelectToDefault();
     }
+  }
+  public runAlert() {
+    this.isAlert = true;
+    setTimeout(
+      function () {
+        $(".alert")
+          .animate({ opacity: 0, bottom: "40px" }, 500)
+          .hide("slow");
+        setTimeout(
+          function () {
+            this.isAlert = false;
+          }.bind(this),
+          600
+        );
+      }.bind(this),
+      4000
+    );
+  }
+
+  public setSelectToDefault() {
+    this.selectedChaos = "";
+    this.selectedApplication = "";
+    $("#application").hide();
+    $("#application")
+      .val("")
+      .change();
+    $("#induceChaos")
+      .val("")
+      .change();
+  }
+  public titleCaseWord(word: string) {
+    if (!word) return word;
+    return word[0].toUpperCase() + word.substr(1).toLowerCase();
   }
 }

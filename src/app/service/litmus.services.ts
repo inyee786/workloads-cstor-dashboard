@@ -16,13 +16,13 @@ export class LitmusService {
         }
       }
 
-    runChaosTestService(chaos: string, app: string) {
+      runChaosTestService(type: string, app: string) {
         this.http
             .get(
-                this.apiurl + "sample/k8s/mongo?app=" +
+                this.apiurl + "litmus?app=" +
                 app +
-                "&chaos=" +
-                chaos
+                "&type=" +
+                type
             )
             .subscribe();
     }

@@ -1,4 +1,3 @@
-<!-- <app-iframemodal></app-iframemodal> -->
 <div class="bg-strip workload-header">
   <div class="container">
     <div class="row">
@@ -12,7 +11,11 @@
     </div>
   </div>
 </div>
-
+<div class="container">
+  <div class="alert alert-primary alert-dismissible text-center" role="alert" *ngIf="isAlert">
+    {{ alertMessage }}
+  </div>
+</div>
 <div class="container-fluid">
   <div class="row">
     <div  [ngClass]="{
@@ -39,7 +42,7 @@
             <div *ngFor="let jivaContrller of jivaContrllers;let i = index">
               <p *ngIf="jivaContrller.pvc === pvc.name">
                 <img src="assets/images/company-logos/mule-without-tagline.png" height="30" alt="" style="margin-right:10px"><span placement="bottom"
-                  ngbTooltip="{{jivaContrller.name}}">c-stor</span> on <span placement="bottom" ngbTooltip="{{jivaContrller.nodeName}}">{{jivaContrller.node}}</span><i
+                  ngbTooltip="{{jivaContrller.name}}">target</span> on <span placement="bottom" ngbTooltip="{{jivaContrller.nodeName}}">{{jivaContrller.node}}</span><i
                   style="margin-left:5px" class="float-right fas" [ngClass]="{
             'fa-check text-success':jivaContrller.status === 'Running',   
             'fa-times text-danger':jivaContrller.status === 'Pending' || jivaContrller.status === 'Failed',
@@ -102,7 +105,7 @@
                 </div>
               </td>
             </tr>
-            <!-- <tr>
+            <tr>
               <td style="padding-left: 70px;"> Induce Chaos </td>
               <td style="padding-left: 55px;">
                 <div class="row">
@@ -119,14 +122,14 @@
                   </div>
                 </div>
               </td>
-            </tr> -->
+            </tr>
             <tr>
               <td></td>
               <td style="padding-left: 40px;">
                 <div>
                   <select class="custom-select hide-custom" id="application" (change)="onAppSelect($event.target.value)" style="width:180px;">
                     <option selected value="">Select Application..</option>
-                    <option *ngFor="let statefulset of statefullSets" value="{{statefulset.name}} "> {{statefulset.name}}
+                    <option *ngFor="let statefulset of litmuspod" value="{{statefulset.name}} "> {{statefulset.name}}
                     </option>
                   </select>
                 </div>
